@@ -6,7 +6,8 @@ const CardComponent = () => {
     return (
         <Card className={styles.card}>
             <Card.Header as="h5">Featured</Card.Header>
-            <Card.Body>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body >
                 <Card.Title>Special title treatment</Card.Title>
                 <Card.Text>
                     With supporting text below as a natural lead-in to additional content.
