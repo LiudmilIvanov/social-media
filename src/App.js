@@ -1,7 +1,9 @@
 import './App.css';
 import Navigation from './components/header/navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CardComponent from './components/card/card';
+import PostComponent from './components/post/post';
+import Aside from './components/aside/aside';
+import { Card } from 'react-bootstrap';
 
 function App() {
   return (
@@ -9,7 +11,10 @@ function App() {
       <Navigation />
       <body>
         <div>
-          <CardComponent />
+          <Aside />
+        </div>
+        <div>
+          <PostComponent />
         </div>
       </body>
 

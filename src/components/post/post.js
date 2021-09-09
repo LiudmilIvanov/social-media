@@ -1,7 +1,7 @@
 import { Card, Button } from "react-bootstrap";
-import styles from './card.module.css'
+import styles from './post.module.css'
 
-const CardComponent = () => {
+const PostComponent = () => {
 
     return (
         <Card className={styles.card}>
@@ -19,4 +19,4 @@ const CardComponent = () => {
 
 }
 
-export default CardComponent;
+export default PostComponent;
