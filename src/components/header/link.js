@@ -1,10 +1,9 @@
 import { Nav } from "react-bootstrap";
 
 
-const Link = (props) => {
-    console.log(props)
+const Link = ({ href, title }) => {
     return (
-        <Nav.Link href="#home">{props.title}</Nav.Link>
+        <Nav.Link href={href}>{title}</Nav.Link>
     )
 }
 

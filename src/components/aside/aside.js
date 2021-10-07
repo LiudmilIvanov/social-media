@@ -11,7 +11,7 @@ const Aside = () => {
             <ListGroup.Item action href="#link2" disabled>
                 Link 2
             </ListGroup.Item>
-                <ListGroup.Item action href="#link2" disabled>
+            <ListGroup.Item action href="#link2" disabled>
                 Link 2
             </ListGroup.Item>
         </ListGroup>

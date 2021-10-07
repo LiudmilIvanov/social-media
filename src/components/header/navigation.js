@@ -2,7 +2,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import Dropdown from "@restart/ui/esm/Dropdown";
 import Link from "./link";
 
-const Navigation = () => {
+const HeaderNavigation = () => {
 
     return (
         <Navbar bg="light" expand="lg">
@@ -11,8 +11,9 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Link title="Home"/>
+                        <Link title="Home" href="/"/>
                         <Link title="Link"/>
+                        <Link title="Login" href="/login"/>
                         <Dropdown title="Dropdown"/>
                     </Nav>
                 </Navbar.Collapse>
@@ -22,5 +23,5 @@ const Navigation = () => {
 
 }
 
-export default Navigation;
+export default HeaderNavigation;
 
