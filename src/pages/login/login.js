@@ -1,9 +1,11 @@
 import React from "react";
 import HeaderNavigation from "../../components/header/navigation";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Image } from "react-bootstrap";
 import Aside from "../../components/aside/aside";
 import styles from '../login/login.module.css'
+import Input from "../../components/input/input";
 
+const loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA-aRabJPP6r4hWlP_TSROdT76tImPWFe4'
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -12,7 +14,35 @@ class LoginPage extends React.Component {
         this.state = {}
     }
 
+    handleChange = (event, type) => {
+        const newState = {}
+        newState[type] = event.target.value
+
+        this.setState(newState)
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const { email, password } = this.state
+
+        fetch(loginUrl, {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => response.json())
+            .then(data => {
+                const authToken = data.idToken
+                document.cookie = `x-auth-token=${authToken}`
+
+                this.props.history.push('/')
+            })
+    }
+
     render() {
+        const { email, password } = this.state
+
         return (
 
             <div>
@@ -22,22 +52,14 @@ class LoginPage extends React.Component {
                         <Aside />
                     </div>
                     <div>
-                        <Form>
-                            <Form.Group className={styles['form-group']} controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" />
-                                <Form.Text className="text-muted">
-                                    We'll never share your email with anyone else.
-                                </Form.Text>
-                            </Form.Group>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Input value={email} onChange={(e) => this.handleChange(e, 'email')} controlId="formBasicEmail" type="email" placeholder="Enter email" />
+                            <Input value={password} onChange={(e) => this.handleChange(e, 'password')} controlId="formBasicPassword" type="password" placeholder="Password" />
 
-                            <Form.Group className={styles['form-group']} controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
-                            </Form.Group>
-                            <Form.Group className={styles['form-group']} controlId="formBasicCheckbox">
+                            {/* <Form.Group className={styles['form-group']} controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" label="Check me out" />
-                            </Form.Group>
+                            </Form.Group> */}
+
                             <Button className={styles['form-group']} variant="primary" type="submit">
                                 Submit
                             </Button>
