@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
                         <Form>
                             <Form.Group className={styles['form-group']} controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control size="2lg" type="email" placeholder="Enter email" />
+                                <Form.Control type="email" placeholder="Enter email" />
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>

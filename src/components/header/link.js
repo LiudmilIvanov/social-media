@@ -1,10 +1,12 @@
 import { Nav } from "react-bootstrap";
+import { Link  } from "react-router-dom";
 
 
-const Link = ({ href, title }) => {
+
+const LinkComponent = ({ href, title }) => {
     return (
-        <Nav.Link href={href}>{title}</Nav.Link>
+        <Nav.Link as={Link} to={href}>{title}</Nav.Link>
     )
 }
 
-export default Link;
+export default LinkComponent;
