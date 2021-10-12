@@ -4,6 +4,7 @@ import { Form, Button, Image } from "react-bootstrap";
 import Aside from "../../components/aside/aside";
 import styles from '../login/login.module.css'
 import Input from "../../components/input/input";
+import authenticate from "../../utils/authenticate";
 
 const loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA-aRabJPP6r4hWlP_TSROdT76tImPWFe4'
 
@@ -21,30 +22,24 @@ class LoginPage extends React.Component {
         this.setState(newState)
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
         const { email, password } = this.state
 
-        fetch(loginUrl, {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }).then(response => response.json())
-            .then(data => {
-                const authToken = data.idToken
-                document.cookie = `x-auth-token=${authToken}`
+        await authenticate(loginUrl, {
+            email, password
+        }, () => {
+            this.props.history.push('/')
 
-                this.props.history.push('/')
-            })
+        }, (e) => {
+            console.log('Error', e)
+        })
     }
 
     render() {
         const { email, password } = this.state
 
         return (
-
             <div>
                 <HeaderNavigation />
                 <body>
