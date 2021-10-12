@@ -11,10 +11,10 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
             document.cookie = `x-auth-token=${authToken}`
 
             if (body.email && data.idToken) {
-                onSuccess({
-                    email: body.email,
-                    id: data.idToken
-                })
+                    onSuccess({
+                        email: body.email,
+                        id: data.idToken
+                    })
             }
 
         }).catch(e => onFailure())

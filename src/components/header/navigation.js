@@ -14,6 +14,7 @@ const HeaderNavigation = () => {
                         <Link title="Home" href="/"/>
                         <Link title="Link"/>
                         <Link title="Login" href="/login"/>
+                        <Link title="Register" href="/register"/>
                         <Dropdown title="Dropdown"/>
                     </Nav>
                 </Navbar.Collapse>
