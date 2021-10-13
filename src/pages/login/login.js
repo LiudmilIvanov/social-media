@@ -39,10 +39,7 @@ class LoginPage extends React.Component {
         await authenticate(loginUrl, {
             email, password
         }, (user) => {
-            console.log(this.context)
             this.context.login(user)
-            console.log(this.context)
-
             this.props.history.push('/')
 
         }, (e) => {
