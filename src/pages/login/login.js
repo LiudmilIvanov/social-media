@@ -48,7 +48,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const { email, password, emailError, passwordError } = this.state
+        const { email, password } = this.state
 
         return (
             <div>
