@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import HeaderNavigation from "../../components/header/navigation";
 import { Form, Button, Image } from "react-bootstrap";
@@ -5,6 +6,8 @@ import Aside from "../../components/aside/aside";
 import styles from '../login/login.module.css'
 import Input from "../../components/input/input";
 import authenticate from "../../utils/authenticate";
+import loginButton from '../../image/loginButton.jpg'
+
 
 const loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA-aRabJPP6r4hWlP_TSROdT76tImPWFe4'
 
@@ -12,7 +15,10 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
+        this.state = {
+            emailError: '',
+            passwordError: ''
+        }
     }
 
     handleChange = (event, type) => {
@@ -20,6 +26,7 @@ class LoginPage extends React.Component {
         newState[type] = event.target.value
 
         this.setState(newState)
+
     }
 
     handleSubmit = async (event) => {
@@ -37,7 +44,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const { email, password } = this.state
+        const { email, password, emailError, passwordError } = this.state
 
         return (
             <div>
@@ -47,8 +54,11 @@ class LoginPage extends React.Component {
                         <Aside />
                     </div>
                     <div>
+                        <Image className={styles.image} src={loginButton} fluid />
+
                         <Form onSubmit={this.handleSubmit}>
-                            <Input value={email} onChange={(e) => this.handleChange(e, 'email')} controlId="formBasicEmail" type="email" placeholder="Enter email" />
+                            <Input value={email} onChange={(e) => this.handleChange(e, 'email')} controlId="formBasicEmail" type="text" placeholder="Enter email" />
+
                             <Input value={password} onChange={(e) => this.handleChange(e, 'password')} controlId="formBasicPassword" type="password" placeholder="Password" />
 
                             {/* <Form.Group className={styles['form-group']} controlId="formBasicCheckbox">

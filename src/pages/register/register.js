@@ -5,6 +5,7 @@ import Aside from "../../components/aside/aside";
 import styles from '../register/register.module.css'
 import Input from "../../components/input/input";
 import authenticate from "../../utils/authenticate";
+import registerButon from '../../image/registerButon.png'
 
 const registerUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA-aRabJPP6r4hWlP_TSROdT76tImPWFe4'
 
@@ -51,6 +52,8 @@ class RegisterPage extends React.Component {
                         <Aside />
                     </div>
                     <div>
+                        <Image className={styles.image} src={registerButon} fluid />
+
                         <Form onSubmit={this.handleSubmit}>
                             <Input value={email} onChange={(e) => this.handleChange(e, 'email')} controlId="formBasicEmail" type="email" placeholder="Enter email" />
                             <Input value={password} onChange={(e) => this.handleChange(e, 'password')} controlId="formBasicPassword" type="password" placeholder="Password" />
