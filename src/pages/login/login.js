@@ -7,6 +7,7 @@ import styles from '../login/login.module.css'
 import Input from "../../components/input/input";
 import authenticate from "../../utils/authenticate";
 import loginButton from '../../image/loginButton.jpg'
+import UserContext from '../../Context'
 
 
 const loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA-aRabJPP6r4hWlP_TSROdT76tImPWFe4'
@@ -20,6 +21,8 @@ class LoginPage extends React.Component {
             passwordError: ''
         }
     }
+
+    static contextType = UserContext
 
     handleChange = (event, type) => {
         const newState = {}
@@ -35,7 +38,11 @@ class LoginPage extends React.Component {
 
         await authenticate(loginUrl, {
             email, password
-        }, () => {
+        }, (user) => {
+            console.log(this.context)
+            this.context.login(user)
+            console.log(this.context)
+
             this.props.history.push('/')
 
         }, (e) => {

@@ -4,10 +4,13 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Navigation from './navigation';
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navigation />
+    <App>
+      <Navigation />
+    </App>
   </React.StrictMode>,
   document.getElementById('root')
 );
