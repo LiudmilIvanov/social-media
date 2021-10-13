@@ -6,6 +6,7 @@ import styles from '../register/register.module.css'
 import Input from "../../components/input/input";
 import authenticate from "../../utils/authenticate";
 import registerButon from '../../image/registerButon.png'
+import UserContext from "../../Context";
 
 const registerUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA-aRabJPP6r4hWlP_TSROdT76tImPWFe4'
 
@@ -15,6 +16,8 @@ class RegisterPage extends React.Component {
 
         this.state = { checkbox: '' }
     }
+
+    static contextType = UserContext
 
     handleChange = (event, type) => {
         const newState = {}
@@ -33,7 +36,8 @@ class RegisterPage extends React.Component {
 
         await authenticate(registerUrl, {
             email, password
-        }, () => {
+        }, (user) => {
+            this.context.login(user)
             this.props.history.push('/')
 
         }, (e) => {
